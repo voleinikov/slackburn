@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       controller: 'test_endpoint',
       action: 'try_it'
   end
+
+  mount SlackBot::Api => '/'
 end
