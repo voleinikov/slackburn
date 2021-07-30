@@ -1,3 +1,6 @@
 require_relative 'bot_views/base'
 require_relative 'bot_views/uvi/entry_point'
 require_relative 'bot_views/uvi/action'
+require_relative 'bot_views/sun_time/entry_point'
+require_relative 'bot_views/sun_time/midpoint'
+require_relative 'bot_views/sun_time/submit'
