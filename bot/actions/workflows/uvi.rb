@@ -6,14 +6,14 @@ SlackRubyBotServer::Events.configure do |config|
     
     begin 
       uvi = UviService.get_uvi(zipcode)
-      msg = BotViews::UviAction.new({ zipcode: zipcode, uvi: uvi }).render
+      msg = BotViews::Uvi::Action.new({ zipcode: zipcode, uvi: uvi }).render
     rescue CustomError => ce
       action.logger.info "Error: #{ce.class}"
       action.logger.info "Internal error message: #{ce.message}"
-      msg = BotViews::UviEntrypoint.new({ errors: [ce.custom_msg], errant_value: zipcode }).render
+      msg = BotViews::Uvi::EntryPoint.new({ errors: [ce.custom_msg], errant_value: zipcode }).render
     rescue => e
       action.logger.info "Error: #{e}"
-      msg = BotViews::UviAction.new({ errors: [ "Sorry. An error has occurred. We'll figure it out and be back soon!" ] }).render
+      msg = BotViews::Uvi::Action.new({ errors: [ "Sorry. An error has occurred. We'll figure it out and be back soon!" ] }).render
     end
 
     Faraday.post(
