@@ -1,1 +1,1 @@
-require_relative 'actions/workflows/uvi'
+require_relative 'actions/uvi'
