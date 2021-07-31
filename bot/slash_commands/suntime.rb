@@ -3,7 +3,8 @@ SlackRubyBotServer::Events.configure do |config|
     command.logger.info 'Receivied a suntime request.'
     skin_type, zipcode, spf = command[:text].split(' ')
     begin
-      exposure_minutes = SuntimeService.get_sun_time(skin_type, zipcode, spf)
+      uvi = UviService.get_uvi(zipcode)
+      exposure_minutes = SuntimeService.get_sun_time(skin_type, uvi, spf)
       hs = SuntimeService.humanize_suntime(exposure_minutes)
       h_sunscreen = SuntimeService.humanize_spf(spf)
       { text: "You can currently spend #{hs} in the sun #{h_sunscreen} at zip code: #{zipcode}" }

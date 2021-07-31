@@ -9,12 +9,12 @@ class SuntimeService
   }
 
   class << self
-    def get_sun_time skin_type, zipcode, spf
+    def get_sun_time skin_type, uvi, spf
       spf = [spf.to_i, 1].max
 
       raise InvalidSkinTypeError unless skintype_valid? skin_type
       raise InvalidSPFError if spf > 100
-      uvi = [UviService.get_uvi(zipcode).to_f, 1].max
+      uvi = [uvi.to_f, 1].max
 
       sun_exposure_minutes(skin_type, spf, uvi)
     end
