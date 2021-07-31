@@ -14,7 +14,7 @@ class SuntimeService
 
       raise InvalidSkinTypeError unless skintype_valid? skin_type
       raise InvalidSPFError if spf > 100
-      uvi = [uvi.to_f, 1].max
+      uvi = [uvi.to_f, 0.1].max
 
       sun_exposure_minutes(skin_type, spf, uvi)
     end
