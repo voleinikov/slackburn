@@ -1,6 +1,6 @@
 SlackRubyBotServer::Events.configure do |config|
-  config.on :command, '/suntime' do |command|
-    command.logger.info 'Receivied a suntime request.'
+  config.on :command, '/expo_time' do |command|
+    command.logger.info 'Receivied a expo_time request.'
     skin_type, zipcode, spf = command[:text].split(' ')
     begin
       uvi = UviService.get_uvi(zipcode)

@@ -1,6 +1,6 @@
 require_relative 'slash_commands/default'
 require_relative 'slash_commands/ping'
 require_relative 'slash_commands/uv_index'
-require_relative 'slash_commands/suntime'
+require_relative 'slash_commands/expo_time'
 require_relative 'slash_commands/entrypoints/uvi'
 require_relative 'slash_commands/entrypoints/workflows/sun_time'
