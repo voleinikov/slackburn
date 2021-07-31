@@ -1,7 +1,7 @@
 module BotViews
   module Suntime
     class Midpoint < BotViews::Base
-      attr_accessor :uvi
+      attr_accessor :uvi, :zipcode
 
       def fitzpatrick_scale_options_map
         opts = (1..6).map do |n|
@@ -97,7 +97,7 @@ module BotViews
                     "type": "plain_text",
                     "text": "Submit",
                   },
-                  "value": "#{self.uvi}",
+                  "value": "#{self.uvi} #{self.zipcode}",
                   "action_id": "suntime_submit"
                 }
               ]

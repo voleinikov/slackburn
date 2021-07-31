@@ -3,12 +3,23 @@ SlackRubyBotServer::Events.configure do |config|
     payload = action[:payload]
     action.logger.info "suntime_submit triggered"
 
-    uvi = payload["actions"][0]["value"]
+    # Get UVI and ZipCode from the "extra state" passed via the submit button
+    # since we can't pass additional_metadata in message blocks (only modals)
+    extra_state = payload["actions"][0]["value"]
+    uvi, zipcode = extra_state.split(" ")
+
+    # Get the spf and skin type from the state object we get from Slack
     spf = payload["state"]["values"]["spf_select"]["spf_select"]["selected_option"]["value"]
     skin_type = payload["state"]["values"]["skin_type_select"]["skin_type_select"]["selected_option"]["value"]
 
+    exposure_minutes = SuntimeService.get_sun_time(skin_type, uvi, spf)
+
     begin 
-      msg = BotViews::Suntime::Submit.new({ uvi: uvi, spf: spf, skin_type: skin_type }).render
+      msg = BotViews::Suntime::Submit.new({
+        spf: spf,
+        zipcode: zipcode,
+        expo_minutes: exposure_minutes
+      }).render
     rescue CustomError => ce
       action.logger.info "Error: #{ce.class}"
       action.logger.info "Internal error message: #{ce.message}"

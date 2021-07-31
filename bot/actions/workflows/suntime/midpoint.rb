@@ -6,7 +6,7 @@ SlackRubyBotServer::Events.configure do |config|
 
     begin 
       uvi = UviService.get_uvi(zipcode)
-      msg = BotViews::Suntime::Midpoint.new({ uvi: uvi }).render
+      msg = BotViews::Suntime::Midpoint.new({ uvi: uvi, zipcode: zipcode }).render
     rescue CustomError => ce
       action.logger.info "Error: #{ce.class}"
       action.logger.info "Internal error message: #{ce.message}"
