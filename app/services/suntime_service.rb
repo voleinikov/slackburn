@@ -19,25 +19,7 @@ class SuntimeService
       sun_exposure_minutes(skin_type, spf, uvi)
     end
 
-    def humanize_suntime suntime
-      from_time = Time.now
-
-      ApplicationController
-        .helpers
-        .distance_of_time_in_words(from_time, from_time + suntime.minutes)
-    end
-
-    def humanize_spf spf
-      spf = [spf.to_i, 1].max
-
-      if spf == 1 
-        return "without sunscreen"
-      else
-        "wearing SPF #{spf} sunscreen"
-      end
-    end
-
-
+    
     private
 
     def skintype_valid? st

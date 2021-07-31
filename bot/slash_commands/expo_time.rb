@@ -1,20 +1,26 @@
 SlackRubyBotServer::Events.configure do |config|
   config.on :command, '/expo_time' do |command|
-    command.logger.info 'Receivied a expo_time request.'
+    command.logger.info 'Receivied an expo_time request.'
     skin_type, zipcode, spf = command[:text].split(' ')
     begin
       uvi = UviService.get_uvi(zipcode)
       exposure_minutes = SuntimeService.get_sun_time(skin_type, uvi, spf)
-      hs = SuntimeService.humanize_suntime(exposure_minutes)
-      h_sunscreen = SuntimeService.humanize_spf(spf)
-      { text: "You can currently spend #{hs} in the sun #{h_sunscreen} at zip code: #{zipcode}" }
+      BotViews::Suntime::Submit.new({
+        spf: spf,
+        zipcode: zipcode,
+        expo_minutes: exposure_minutes
+      }).render
     rescue CustomError => ce
       command.logger.info "Error: #{ce.class}"
       command.logger.info "Internal error message: #{ce.message}"
-      { text: ce.custom_msg }
+      BotViews::Suntime::Submit.new({ errors: [ ce.custom_msg ] }).render
     rescue => e
       command.logger.info "Error: #{e}"
-      { text: "Sorry. An error has occurred. We'll figure it out and be back soon!" }
+      BotViews::Suntime::Submit.new({ 
+        errors: [
+          "Sorry. An error has occurred. We'll figure it out and be back soon!"
+        ] 
+      }).render
     end
   end
 end
