@@ -1,5 +1,5 @@
 module BotViews
-  module SunTime
+  module Suntime
     class Midpoint < BotViews::Base
       attr_accessor :uvi
 
@@ -98,7 +98,7 @@ module BotViews
                     "text": "Submit",
                   },
                   "value": "#{self.uvi}",
-                  "action_id": "sun_time_submit"
+                  "action_id": "suntime_submit"
                 }
               ]
             }

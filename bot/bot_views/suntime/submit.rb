@@ -1,5 +1,5 @@
 module BotViews
-  module SunTime
+  module Suntime
     class Submit < BotViews::Base
       attr_accessor :uvi, :spf, :skin_type
 

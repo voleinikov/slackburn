@@ -1,5 +1,5 @@
 module BotViews
-  module SunTime
+  module Suntime
     class EntryPoint < BotViews::Base
       attr_accessor :channel_id, :errant_value
 
@@ -12,7 +12,7 @@ module BotViews
                 "type": "input",
                 "element": {
                   "type": "plain_text_input",
-                  "action_id": "sun_time_zip_input",
+                  "action_id": "suntime_zip_input",
                   "initial_value": "#{self.errant_value}"
                 },
                 "label": {
@@ -40,7 +40,7 @@ module BotViews
                 "type": "input",
                 "element": {
                   "type": "plain_text_input",
-                  "action_id": "sun_time_zip_input"
+                  "action_id": "suntime_zip_input"
                 },
                 "label": {
                   "type": "plain_text",
