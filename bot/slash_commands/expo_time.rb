@@ -5,6 +5,9 @@ SlackRubyBotServer::Events.configure do |config|
     begin
       uvi = UviService.get_uvi(zipcode)
       exposure_minutes = SuntimeService.get_sun_time(skin_type, uvi, spf)
+
+      # We're re-using the same view Suntime uses on final submit, that's why
+      # you're seeing hte Suntime::Submit BotView here. 
       BotViews::Suntime::Submit.new({
         spf: spf,
         zipcode: zipcode,
