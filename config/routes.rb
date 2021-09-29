@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   end
 
   mount SlackBot::Api => '/'
+
+  scope module: 'slack_bot' do
+    get '/install_bot' => 'static_pages#add_to_slack'
+    resources :workspaces, only: [:create]
+  end
 end

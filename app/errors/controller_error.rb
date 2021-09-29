@@ -1,0 +1,2 @@
+class ControllerError < StandardError
+end
