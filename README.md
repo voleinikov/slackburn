@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rails slack bot that uses the nice [`slack-ruby-bot-server-events`](https://github.com/slack-ruby/slack-ruby-bot-server-events) library to integrate with slack to create a bot will return UVI's and time you can spend in the sun at a given zip code based on the Fitzpatrick Skin Type scale.  It was based on a fun project I saw on hacker news called [Time to SunBurn](https://deepnote.com/@daniel-zvara-036a/Time-to-sunburn-73Bmeo76QwO33IxA3GYGcQ). 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To try it out, clone the project, spin it up on localhost, and use a service like ngrok to create a url that forwards requests to localhost -- there is a simple test api endpoint you can send a curl request to to test that this is working. Then create a new bot in Slack, configure it to use this temporary URL, and set up the slash commands and actions with the same names you see in the bot.  
